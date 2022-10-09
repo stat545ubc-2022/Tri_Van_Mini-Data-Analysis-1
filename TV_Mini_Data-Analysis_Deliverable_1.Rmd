@@ -127,11 +127,28 @@ glimpse(parking_meters)
 
 <!-------------------------- Start your work below ---------------------------->
 
+Choice 1: *steam_games*
+Reason: 
+- Compare to other datasets, this dataset does not seem to have mnay missing or NA values
+- I also understand this datasets better than other dataset
+
+Choice 2: *apt_buildings*
+Reason: 
+- Variables in this dataset seems straightforward compared to the first dataset
+- I am interested in the information contained in this dataset
+
 <!----------------------------------------------------------------------------->
 
 1.4 Time for the final decision! Going back to the beginning, it's important to have an *end goal* in mind. For example, if I had chosen the `titanic` dataset for my project, I might've wanted to explore the relationship between survival and other variables. Try to think of 1 research question that you would want to answer with each dataset. Note them down below, and make your final choice based on what seems more interesting to you!
 
 <!-------------------------- Start your work below ---------------------------->
+
+Choice 1: *steam_games*
+Research Question: What is the relationship between "genre" and "all_reviews"? 
+
+Choice 2: *apt_buildings*
+Research Question: What is the relationship between "air_conditioning " and "year_built"?  
+--> This would be my final choice.I am interested in knowing that as the average summer in the last few years have been getting hotter, do more recent apartment equiped with air conditioning.
 
 <!----------------------------------------------------------------------------->
 
@@ -159,6 +176,12 @@ If we rewind and go back to the learning objectives, you'll see that by the end 
 2.2 For each of the 4 exercises that you complete, provide a *brief explanation* of why you chose that exercise in relation to your data (in other words, why does it make sense to do that?), and sufficient comments for a reader to understand your reasoning and code.
 
 <!-------------------------- Start your work below ---------------------------->
+Data set:*apt_buildings*
+4 Exercise to explore the data:
+1.  Plot the distribution of a numeric variable.
+2.  Explore the relationship between 2 variables in a plot.
+3.  Filter observations in your data according to your own criteria.
+4.  Use a boxplot to look at the frequency of different observations within a single variable.
 
 <!----------------------------------------------------------------------------->
 
@@ -167,6 +190,13 @@ If we rewind and go back to the learning objectives, you'll see that by the end 
 So far, you have chosen a dataset and gotten familiar with it through exploring the data. Now it's time to figure out 4 research questions that you would like to answer with your data! Write the 4 questions and any additional comments at the end of this deliverable. These questions are not necessarily set in stone - TAs will review them and give you feedback; therefore, you may choose to pursue them as they are for the rest of the project, or make modifications!
 
 <!--- *****START HERE***** --->
+Data set:*apt_buildings*
+
+Research question 1: Is newer building "year_built" have more "barrier_free_accessibilty_entr"?
+Research question 2: Does building with more "no_of_unit" have more "visitor_parking"?
+Research question 3: Does building allowed smoking "`non-smoking_building" less likely to have a "sprinkler_system"?fire_alarm ?exterior_fire_escape?
+Research question 4: What are the average years it take in order to registered the building "year_registered" since it was built "year_built"?
+<!----------------------------------------------------------------------------->
 
 # Task 4: Process and summarize your data (13 points)
 
@@ -195,7 +225,13 @@ Ensure that the output of each operation is printed!
 Make sure it's clear what research question you are doing each operation for!
 
 <!------------------------- Start your work below ----------------------------->
+Research question 1: Is newer building "year_built" have more "barrier_free_accessibilty_entr"?
+1.  Compute the *range*, *mean*, and *two other summary statistics* of **one numerical variable** across the groups of **one categorical variable** from your data.
+5.  Create a graph out of summarized variables that has at least two geom layers.
 
+Research question 2: Does building with more "no_of_unit" have more "visitor_parking"?
+Research question 3: Does building allowed smoking "`non-smoking_building" less likely to have a "sprinkler_system"?fire_alarm ?exterior_fire_escape?
+Research question 4: What are the average years it take in order to registered the building "year_registered" since it was built "year_built"?
 <!----------------------------------------------------------------------------->
 
 ### 1.2 (3 points)
@@ -203,6 +239,10 @@ Make sure it's clear what research question you are doing each operation for!
 Based on the operations that you've completed, how much closer are you to answering your research questions? Think about what aspects of your research questions remain unclear. Can your research questions be refined, now that you've investigated your data a bit more? Which research questions are yielding interesting results?
 
 <!-------------------------- Start your work below ---------------------------->
+Research question 1: Is newer building "year_built" have more "barrier_free_accessibilty_entr"?
+Research question 2: Does building with more "no_of_unit" have more "visitor_parking"?
+Research question 3: Does building allowed smoking "`non-smoking_building" less likely to have a "sprinkler_system"?fire_alarm ?exterior_fire_escape?
+Research question 4: What are the average years it take in order to registered the building "year_registered" since it was built "year_built"?
 
 <!----------------------------------------------------------------------------->
 
