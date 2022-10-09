@@ -1,6 +1,6 @@
 ---
 title: "TV_Mini_Data-Analysis_Deliverable_1"
-output: html_document
+output: github_document
 ---
 
 # Welcome to your (maybe) first-ever data analysis project!
@@ -80,10 +80,10 @@ And that is exactly the first thing that you will do!
 
 <!-------------------------- Start your work below ---------------------------->
 
-1: CHOICE_1\_HERE\
-2: CHOICE_2\_HERE\
-3: CHOICE_3\_HERE\
-4: CHOICE_4\_HERE
+1: *steam_games*
+2: *apt_buildings*
+3: *building_permits*
+4: *parking_meters*
 
 <!----------------------------------------------------------------------------->
 
@@ -95,7 +95,30 @@ And that is exactly the first thing that you will do!
 
 ```{r}
 ### EXPLORE HERE ###
-steam_games
+#steam_games
+class(steam_games)
+head(steam_games)
+summary(steam_games)
+glimpse(steam_games)
+
+#apt_buildings
+class(apt_buildings)
+head(apt_buildings)
+summary(apt_buildings)
+glimpse(apt_buildings)
+
+#building_permits
+class(building_permits)
+head(building_permits)
+summary(building_permits)
+glimpse(building_permits)
+
+#parking_meters
+class(parking_meters)
+head(parking_meters)
+summary(parking_meters)
+glimpse(parking_meters)
+
 ```
 
 <!----------------------------------------------------------------------------->
