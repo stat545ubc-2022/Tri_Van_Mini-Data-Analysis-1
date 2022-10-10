@@ -129,12 +129,24 @@ glimpse(parking_meters)
 
 Choice 1: *steam_games*
 Reason: 
-- Compare to other datasets, this dataset does not seem to have mnay missing or NA values
+- Compare to other datasets, this dataset does not seem to have many missing or NA values
+```{r}
+steam_games %>% 
+  select(id:recommended_requirements) %>%
+  is.na() %>% 
+  sum()
+```
 - I also understand this datasets better than other dataset
 
 Choice 2: *apt_buildings*
 Reason: 
 - Variables in this dataset seems straightforward compared to the first dataset
+```{r}
+apt_buildings %>% 
+  select(id:no_barrier_free_accessible_units) %>%
+  is.na() %>% 
+  sum()
+```
 - I am interested in the information contained in this dataset
 
 <!----------------------------------------------------------------------------->
@@ -178,10 +190,32 @@ If we rewind and go back to the learning objectives, you'll see that by the end 
 <!-------------------------- Start your work below ---------------------------->
 Data set:*apt_buildings*
 4 Exercise to explore the data:
+
 1.  Plot the distribution of a numeric variable.
+```{r}
+apt_buildings %>% ggplot(aes(x=year_built)) + geom_histogram(binwidth=.5, colour="black", fill="white")
+```
+Brief explanation: "year_built" is a numeric variable in this data set thus it is possible to plot a distribution of this variable. In regarding to the question, it would be interested to know when most of the buildings was built. IN this case, it seems that most of the building in vancouver was built in the 60s.
+
 2.  Explore the relationship between 2 variables in a plot.
+```{r}
+apt_buildings %>% ggplot(aes(x=year_built,fill=air_conditioning)) + geom_density(alpha=.3)
+```
+Brief explanation: I am interested in knowing whether the more recent built building are more likely to have air-conditioning. However, there are multiple types of air-conditioning, so this type of density plot, would be the best to show us is the type of air conditioning (if any) that is used overtime.
+
 3.  Filter observations in your data according to your own criteria.
+```{r}
+apt_buildings_after1900 <- apt_buildings %>% filter(year_built>1900)
+dim(apt_buildings_after1900)
+```
+Brief explanation: Since buildings that are over 100 year old should be torn down soon or underwent major renovation that changes the structure and amenities (including the type of air conditionning), I will filter the building built after 1900.
+
 4.  Use a boxplot to look at the frequency of different observations within a single variable.
+```{r}
+apt_buildings %>% ggplot(aes(x=air_conditioning,y=no_of_units)) + geom_boxplot()
+apt_buildings %>% ggplot(aes(x=air_conditioning,y=no_of_units)) + geom_boxplot() + ylim(0,1000)
+```
+Brief explanation: I want to know if there is a relationship between number of units and the type of air_conditioning that a building have. Intuitively, the larger building should more likely to have central air conditioning. After trying the first line of code, there is an outlier with over 4000 units with the "Central air conditioning" so I rescale it in order to have a better look at other observations. After rescaling, we can see that overall it seems that there might be a correlation between the type of air_conditiong and number of units.
 
 <!----------------------------------------------------------------------------->
 
@@ -226,11 +260,18 @@ Make sure it's clear what research question you are doing each operation for!
 
 <!------------------------- Start your work below ----------------------------->
 Research question 1: Is newer building "year_built" have more "barrier_free_accessibilty_entr"?
-1.  Compute the *range*, *mean*, and *two other summary statistics* of **one numerical variable** across the groups of **one categorical variable** from your data.
-5.  Create a graph out of summarized variables that has at least two geom layers.
+
 
 Research question 2: Does building with more "no_of_unit" have more "visitor_parking"?
+1.  Compute the *range*, *mean*, and *two other summary statistics* of **one numerical variable** across the groups of **one categorical variable** from your data.
+```{r}
+apt_buildings %>% group_by(visitor_parking) %>% summarise(no_of_unit_mean = mean(no_of_unit, na.rm = TRUE))
+```
+5.  Create a graph out of summarized variables that has at least two geom layers.
+
+Reason:"no_of_unit" is **one numerical variable** and "visitor_parking" is groups of **one categorical variable**
 Research question 3: Does building allowed smoking "`non-smoking_building" less likely to have a "sprinkler_system"?fire_alarm ?exterior_fire_escape?
+
 Research question 4: What are the average years it take in order to registered the building "year_registered" since it was built "year_built"?
 <!----------------------------------------------------------------------------->
 
@@ -242,6 +283,8 @@ Based on the operations that you've completed, how much closer are you to answer
 Research question 1: Is newer building "year_built" have more "barrier_free_accessibilty_entr"?
 Research question 2: Does building with more "no_of_unit" have more "visitor_parking"?
 Research question 3: Does building allowed smoking "`non-smoking_building" less likely to have a "sprinkler_system"?fire_alarm ?exterior_fire_escape?
+
+
 Research question 4: What are the average years it take in order to registered the building "year_registered" since it was built "year_built"?
 
 <!----------------------------------------------------------------------------->
