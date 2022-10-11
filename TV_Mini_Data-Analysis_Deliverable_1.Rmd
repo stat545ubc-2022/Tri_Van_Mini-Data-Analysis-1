@@ -129,25 +129,19 @@ glimpse(parking_meters)
 
 Choice 1: *steam_games*
 Reason: 
-- Compare to other datasets, this dataset does not seem to have many missing or NA values
-```{r}
-steam_games %>% 
-  select(id:recommended_requirements) %>%
-  is.na() %>% 
-  sum()
-```
-- I also understand this datasets better than other dataset
+- I am familiar with this data set, and understand what each variables and observations stand for.
 
 Choice 2: *apt_buildings*
 Reason: 
-- Variables in this dataset seems straightforward compared to the first dataset
+- Compare to other data set, this data set does not seem to have many missing or NA values
 ```{r}
 apt_buildings %>% 
   select(id:no_barrier_free_accessible_units) %>%
   is.na() %>% 
   sum()
 ```
-- I am interested in the information contained in this dataset
+- Variables in this data set seems straightforward compared to the first data set
+- I am interested in the information contained in this data set
 
 <!----------------------------------------------------------------------------->
 
@@ -155,12 +149,12 @@ apt_buildings %>%
 
 <!-------------------------- Start your work below ---------------------------->
 
-Choice 1: *steam_games*
-Research Question: What is the relationship between "genre" and "all_reviews"? 
+-   **Choice 1:** *steam_games*
+*Research Question:* What is the relationship between "genre" and the average rating of review the receuved? 
 
-Choice 2: *apt_buildings*
-Research Question: What is the relationship between "air_conditioning " and "year_built"?  
---> This would be my final choice.I am interested in knowing that as the average summer in the last few years have been getting hotter, do more recent apartment equiped with air conditioning.
+-   **Choice 2:** *apt_buildings*
+*Research Question*: What is the relationship between "air_conditioning " and "year_built"?  
+--> This would be my final choice.I am interested in knowing that as the average summer in the last few years have been getting hotter, do more recent apartment equipped with air conditioning.
 
 <!----------------------------------------------------------------------------->
 
@@ -189,33 +183,38 @@ If we rewind and go back to the learning objectives, you'll see that by the end 
 
 <!-------------------------- Start your work below ---------------------------->
 Data set:*apt_buildings*
-4 Exercise to explore the data:
 
-1.  Plot the distribution of a numeric variable.
+**4 Exercise to explore the data:**
+
+**1.  Plot the distribution of a numeric variable.**
 ```{r}
 apt_buildings %>% ggplot(aes(x=year_built)) + geom_histogram(binwidth=.5, colour="black", fill="white")
 ```
-Brief explanation: "year_built" is a numeric variable in this data set thus it is possible to plot a distribution of this variable. In regarding to the question, it would be interested to know when most of the buildings was built. IN this case, it seems that most of the building in vancouver was built in the 60s.
 
-2.  Explore the relationship between 2 variables in a plot.
+-   *Brief explanation:* "year_built" is a numeric variable in this data set thus it is possible to plot a distribution of this variable. In regarding to the question, it would be interested to know when most of the buildings was built. IN this case, it seems that most of the building in vancouver was built in the 60s.
+
+**2.  Explore the relationship between 2 variables in a plot.**
 ```{r}
 apt_buildings %>% ggplot(aes(x=year_built,fill=air_conditioning)) + geom_density(alpha=.3)
 ```
-Brief explanation: I am interested in knowing whether the more recent built building are more likely to have air-conditioning. However, there are multiple types of air-conditioning, so this type of density plot, would be the best to show us is the type of air conditioning (if any) that is used overtime.
 
-3.  Filter observations in your data according to your own criteria.
+-   *Brief explanation:* I am interested in knowing whether the more recent built building are more likely to have air-conditioning. However, there are multiple types of air-conditioning, so this type of density plot, would be the best to show us is the type of air conditioning (if any) that is used overtime.
+
+**3.  Filter observations in your data according to your own criteria.**
 ```{r}
 apt_buildings_after1900 <- apt_buildings %>% filter(year_built>1900)
 dim(apt_buildings_after1900)
 ```
-Brief explanation: Since buildings that are over 100 year old should be torn down soon or underwent major renovation that changes the structure and amenities (including the type of air conditionning), I will filter the building built after 1900.
 
-4.  Use a boxplot to look at the frequency of different observations within a single variable.
+-   *Brief explanation:* Since buildings that are over 100 year old should be torn down soon or underwent major renovation that changes the structure and amenities (including the type of air conditionning), I will filter the building built after 1900.
+
+**4.  Use a boxplot to look at the frequency of different observations within a single variable.**
 ```{r}
 apt_buildings %>% ggplot(aes(x=air_conditioning,y=no_of_units)) + geom_boxplot()
 apt_buildings %>% ggplot(aes(x=air_conditioning,y=no_of_units)) + geom_boxplot() + ylim(0,1000)
 ```
-Brief explanation: I want to know if there is a relationship between number of units and the type of air_conditioning that a building have. Intuitively, the larger building should more likely to have central air conditioning. After trying the first line of code, there is an outlier with over 4000 units with the "Central air conditioning" so I rescale it in order to have a better look at other observations. After rescaling, we can see that overall it seems that there might be a correlation between the type of air_conditiong and number of units.
+
+-   *Brief explanation:* I want to know if there is a relationship between number of units and the type of air_conditioning that a building have. Intuitively, the larger building should more likely to have central air conditioning. After trying the first line of code, there is an outlier with over 4000 units with the "Central air conditioning" so I rescale it in order to have a better look at other observations. After resealing, we can see that overall it seems that there might be a correlation between the type of air conditioning and number of units.
 
 <!----------------------------------------------------------------------------->
 
@@ -226,10 +225,13 @@ So far, you have chosen a dataset and gotten familiar with it through exploring 
 <!--- *****START HERE***** --->
 Data set:*apt_buildings*
 
-Research question 1: Is newer building "year_built" have more "barrier_free_accessibilty_entr"?
-Research question 2: Does building with more "no_of_unit" have more "visitor_parking"?
-Research question 3: Does building allowed smoking "`non-smoking_building" less likely to have a "sprinkler_system"?fire_alarm ?exterior_fire_escape?
-Research question 4: What are the average years it take in order to registered the building "year_registered" since it was built "year_built"?
+-   Research question 1: Are newer buildings more likely to have barrier-free accessibility entry?
+
+-   Research question 2: Is there a relationship between the type of visitor parking available and the size of building in term of number of units?
+
+-   Research question 3: Is a building that allows smoking more or less likely to have a sprinkler system?
+
+-   Research question 4: Is there any relationship between the type of window and the type of air conditioning system that is used?
 <!----------------------------------------------------------------------------->
 
 # Task 4: Process and summarize your data (13 points)
@@ -244,35 +246,91 @@ Ensure that the output of each operation is printed!
 
 **Summarizing:**
 
-1.  Compute the *range*, *mean*, and *two other summary statistics* of **one numerical variable** across the groups of **one categorical variable** from your data.
-2.  Compute the number of observations for at least one of your categorical variables. Do not use the function `table()`!
-3.  Create a categorical variable with 3 or more groups from an existing numerical variable. You can use this new variable in the other tasks! *An example: age in years into "child, teen, adult, senior".*
-4.  Based on two categorical variables, calculate two summary statistics of your choosing.
+1.  Compute the *range*, *mean*, and *two other summary statistics* of **one numerical variable** across the groups of **one categorical variable** from your data. (Done)
+2.  Compute the number of observations for at least one of your categorical variables. Do not use the function `table()`! (Done)
+3.  Create a categorical variable with 3 or more groups from an existing numerical variable. You can use this new variable in the other tasks! *An example: age in years into "child, teen, adult, senior".* (Done)
+4.  Based on two categorical variables, calculate two summary statistics of your choosing. (Done)
 
 **Graphing:**
 
-5.  Create a graph out of summarized variables that has at least two geom layers.
-6.  Create a graph of your choosing, make one of the axes logarithmic, and format the axes labels so that they are "pretty" or easier to read.
-7.  Make a graph where it makes sense to customize the alpha transparency.
+5.  Create a graph out of summarized variables that has at least two geom layers. (Done)
+6.  Create a graph of your choosing, make one of the axes logarithmic, and format the axes labels so that they are "pretty" or easier to read.(Done)
+7.  Make a graph where it makes sense to customize the alpha transparency.(Done)
 8.  Create 3 histograms out of summarized variables, with each histogram having different sized bins. Pick the "best" one and explain why it is the best.
 
 Make sure it's clear what research question you are doing each operation for!
 
 <!------------------------- Start your work below ----------------------------->
-Research question 1: Is newer building "year_built" have more "barrier_free_accessibilty_entr"?
-
-
-Research question 2: Does building with more "no_of_unit" have more "visitor_parking"?
-1.  Compute the *range*, *mean*, and *two other summary statistics* of **one numerical variable** across the groups of **one categorical variable** from your data.
+*Research question 1:* Are newer buildings more likely to have barrier-free accessibility entry?
+**Summarizing:**  Create a categorical variable with 3 or more groups from an existing numerical variable. You can use this new variable in the other tasks!
 ```{r}
-apt_buildings %>% group_by(visitor_parking) %>% summarise(no_of_unit_mean = mean(no_of_unit, na.rm = TRUE))
+apt_buildings %>% select(year_built,barrier_free_accessibilty_entr) %>% mutate(year_built_r_cat=case_when(
+      year_built< 1900 ~ "Before 1900",
+       year_built> 2000 ~ "After 2000",
+      TRUE                   ~ "Between 1900 and 2000"))
 ```
-5.  Create a graph out of summarized variables that has at least two geom layers.
 
-Reason:"no_of_unit" is **one numerical variable** and "visitor_parking" is groups of **one categorical variable**
-Research question 3: Does building allowed smoking "`non-smoking_building" less likely to have a "sprinkler_system"?fire_alarm ?exterior_fire_escape?
+-   Comment: This task allows me to categorize the buildings' built years into 3 categorical variables from the existing numerical year built variable. However, this task alone will not help me answer the research question without adding additional line of code. However, it sets up so that I can compare the proportion of building with barrier-free accessibility entry between these 3 periods if that is something I want to explore.
+**Graphing:**  Make a graph where it makes sense to customize the alpha transparency.
+```{r}
+apt_buildings %>% ggplot(aes(x=year_built, fill=barrier_free_accessibilty_entr)) +geom_density(alpha =0.5) +xlab('Year built')+ theme_minimal()
+```
 
-Research question 4: What are the average years it take in order to registered the building "year_registered" since it was built "year_built"?
+-   Comment: Since there are overlapping between group of variables over the year, it makes sense to customize alpha transparency. Examining this graph, it seems clear to me that newer building are more likely to have barrier-free entry compared to older building. In fact, most building built after the year 2000 have barrier-free accessibility entry.
+
+*Research question 2:* Is there a relationship between the type of visitor parking available and the size of building in term of number of units?
+**Summarizing:**  Compute the *range*, *mean*, and *two other summary statistics* of **one numerical variable** across the groups of **one categorical variable** from your data.
+```{r}
+apt_buildings %>% group_by(visitor_parking) %>% summarise (mean=mean(no_of_units), n = n())
+apt_buildings %>% group_by(visitor_parking) %>% summarise (range=range(no_of_units), n = n())
+apt_buildings %>% group_by(visitor_parking) %>% summarise (min=min(no_of_units), n = n())
+apt_buildings %>% group_by(visitor_parking) %>% summarise (max=max(no_of_units), n = n())
+```
+
+-   Comment: This task provides me with a few types of summary statistics for buildings with each type of visitor parking (categorical variable), including mean, min, max, and the range of the number of units (numerical variable) for building with each type of visitor parking. If we classify a building by their average number of units, then it seems that smaller building are more likely to not have visitor parking available as the mean number of units for those building are the lowest. Thus, this task somewhat allows me to answer the research question.
+
+**Graphing:**  Create a graph out of summarized variables that has at least two geom layers.
+```{r}
+apt_buildings %>% ggplot(aes(x=visitor_parking,y=no_of_units))+stat_summary(fun.y="mean", geom="bar")+  xlab('Type of visitor parking')+  ylab('Average Number of units')
+```
+
+
+-   Comment: This graph provides me the same information as the summarizing task, as it graphs the average number of units by type of visitor parking. Thus, similar to the other task, this task also allows me to answer this research question.
+
+*Research question 3:* Is a building that allows smoking more or less likely to have a sprinkler system?
+**Summarizing:**  Compute the number of observations for at least one of your categorical variables. Do not use the function `table()`!
+```{r}
+apt_buildings %>% count(`non-smoking_building`)
+apt_buildings %>% count(sprinkler_system)
+apt_buildings %>% select(`non-smoking_building`,sprinkler_system) %>%filter(`non-smoking_building`=="YES",sprinkler_system=="YES")
+apt_buildings %>% select(`non-smoking_building`,sprinkler_system) %>%filter(`non-smoking_building`=="NO",sprinkler_system=="NO")
+```
+
+-   Comment: Both whether a building is non-smoking and whether the building has a sprinkle system are categorical variables.This tasks tell me that there are 2071 building that allowed smoking, among them, at least 610 does not have a sprinkle system. Similarly, there are 1290 buildings that do not allow smoking, and among the, at least 867 have sprinkle systems. I will need to conduct additional analysis to answer the research question.
+
+**Graphing:**  Create a graph out of summarized variables that has at least two geom layers.
+```{r}
+apt_buildings %>% ggplot(aes(x = `non-smoking_building`, fill=sprinkler_system)) +  geom_bar() + theme_minimal() + xlab("Non-Smoking Building?")
+```
+
+-   Comment: This graph shows me that there are more buildings that allow smoking than non-smoking. The proportion of building with and without a sprinkle system seems to be about the same for smoking and non-smoking building. Without doing hypothesis testing, it will be impossible for me to asnwer the research question
+
+*Research question 4:* Is there any relationship between the type of window and the type of air conditioning system that is used?
+**Summarizing:**  Compute the number of observations for at least one of your categorical variables. Do not use the function `table()`!
+```{r}
+apt_buildings %>% count(window_type)
+apt_buildings %>% count(air_conditioning)
+```
+
+-   Comment: The result of this task showed me that double panel is the most common type of window, while most buildings have no air conditioning. however, this does not afford me enough information to answer the research question. 
+
+**Graphing:**  Create a graph of your choosing, make one of the axes logarithmic, and format the axes labels so that they are "pretty" or easier to read.
+```{r}
+apt_buildings %>% ggplot(aes(x = air_conditioning, fill=window_type)) + scale_y_log10("Counts Per log 10 scale")+  geom_bar() + theme_minimal() + xlab("Type of air conditioing")
+```
+
+-   Comment: Type of window and air conditioning are both categorical variables. The number of units with no air conditions vastly outnumbers other type of air conditions. Thus using a log 10 scale here make it easier to see more proportional difference and compared the type of window type for each type of air conditioning. Overall it seems that buidling without air-conditioning is more likely to be equipped single panel window, but I cannot be sure without doing hypothesis testing.
+
 <!----------------------------------------------------------------------------->
 
 ### 1.2 (3 points)
@@ -280,12 +338,22 @@ Research question 4: What are the average years it take in order to registered t
 Based on the operations that you've completed, how much closer are you to answering your research questions? Think about what aspects of your research questions remain unclear. Can your research questions be refined, now that you've investigated your data a bit more? Which research questions are yielding interesting results?
 
 <!-------------------------- Start your work below ---------------------------->
-Research question 1: Is newer building "year_built" have more "barrier_free_accessibilty_entr"?
-Research question 2: Does building with more "no_of_unit" have more "visitor_parking"?
-Research question 3: Does building allowed smoking "`non-smoking_building" less likely to have a "sprinkler_system"?fire_alarm ?exterior_fire_escape?
+*Research question 1*: Are newer buildings more likely to have barrier-free accessibility entry?
 
+-   Comment: This research question can be answered with high degree certainty based on completed tasks, newer buildings are more likely to have to have 
+barrier-free accessibility entry.
 
-Research question 4: What are the average years it take in order to registered the building "year_registered" since it was built "year_built"?
+*Research question 2*: Is there a relationship between the type of visitor parking available and the size of building in term of number of units?
+
+-   Comment: This research question can be answered with moderate degree certainty based on completed tasks, smaller building by number of units is less likely to have visitor parking.
+
+*Research question 3*: Is a building that allows smoking more or less likely to have a sprinkler system?
+
+-   Comment: We cannot currently answer this questions with certainty based on the based on completed tasks. We need to conduct hypotheis testing.
+
+*Research question 4*: Is there any relationship between the type of window and the type of air conditioning system that is used?
+
+-   Comment: We cannot currently answer this questions with certainty based on the based on completed tasks. We need to conduct hypotheis testing.
 
 <!----------------------------------------------------------------------------->
 
