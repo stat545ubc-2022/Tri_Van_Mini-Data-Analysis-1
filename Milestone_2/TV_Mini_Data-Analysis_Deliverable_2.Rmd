@@ -102,7 +102,7 @@ head(untidy)
 ```{r}
 ### Tidy again ###
 #tidy<- untidy %>% select(id,PAID,FREE,UNAVAILABLE,BOTH) %>% pivot_longer(cols =c(-id),names_to = "visitor_parking", values_to = "no_of_accessible_parking_spaces")
-tidy<- untidy %>% pivot_longer(cols =c("PAID","FREE","UNAVAILABLE","BOTH","NA"),names_to = "visitor_parking", values_to ="no_of_units") # WHy anything other than paid does not translate into value?
+tidy<- untidy %>% pivot_longer(cols =c("PAID","FREE","UNAVAILABLE","BOTH","NA"),names_to = "visitor_parking", values_to ="no_of_units") # Why anything other than paid does not translate into value?
 head(tidy)
 
 
@@ -129,8 +129,8 @@ Now, you should be more familiar with your data, and also have made progress in 
 Explain your decision for choosing the above two research questions.
 
 <!--------------------------- Start your work below --------------------------->
-1.  *FILL_THIS_IN*
-2.  *FILL_THIS_IN*
+1.  *FILL_THIS_IN* I want to know whether building built after year 2000 have more barrier-free accessibility entry then building built before 2000 for the same number of units. The degree of complexity is enough for me to apply the functions to refine the data.
+2.  *FILL_THIS_IN* I want to know whether there a relationship between the type of visitor parking available and the size of building in term of number of units in building built after year 2000. The degree of complexity is enough for me to apply the functions to refine the data.
 
 <!----------------------------------------------------------------------------->
 
