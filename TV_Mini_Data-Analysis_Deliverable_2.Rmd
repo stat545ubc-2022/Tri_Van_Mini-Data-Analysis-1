@@ -278,7 +278,7 @@ Take a summary table that you made from Milestone 1 (Task 4.2), and write it as 
 <!-------------------------- Start your work below ---------------------------->
 ```{r}
 library(here)
-
+write_csv(Group_apt_buildings,here("Output", "Task4_Group_apt_buildings.csv"))
 ```
 
 <!----------------------------------------------------------------------------->
@@ -291,8 +291,9 @@ Write your model object from Task 3 to an R binary file (an RDS), and load it ag
 
 <!-------------------------- Start your work below ---------------------------->
 ```{r}
-
-
+saveRDS(accessible_parking_lm, file=here("Output", "accessible_parking_lm.rds"))
+accessible_parking_lm_again<-readRDS(file=here("Output", "accessible_parking_lm.rds"))
+accessible_parking_lm_again
 ```
 
 <!----------------------------------------------------------------------------->
