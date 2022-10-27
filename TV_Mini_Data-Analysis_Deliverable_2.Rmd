@@ -183,14 +183,33 @@ Now, choose two of the following tasks.
 
 <!-------------------------- Start your work below ---------------------------->
 
-**Task Number**: FILL_THIS_IN
-
+**Task Number**: 1
+```{r}
+library(forcats)
+# re-order
+reorder_apt_buildings <- apt_buildings %>%
+   mutate(visitor_parking = fct_reorder(visitor_parking, no_of_units,.fun = median, .desc = FALSE))
+head(reorder_apt_buildings)
+# Graph
+reorder_apt_buildings %>% filter(year_built>=2000) %>% select("id","no_of_units","visitor_parking") %>% ggplot(aes(x = visitor_parking, y=no_of_units)) + geom_boxplot() + theme_minimal() + ylim(0,1000) 
+```
+Explanation: I want to order the type of visitor parking in the increasing order of their average number of units. Because I suspect the larger building (with more units) are more likely to have visitor parking of all types (Both, free, paid), whereas smaller units may have no visitor parking available.
 <!----------------------------------------------------------------------------->
 
 <!-------------------------- Start your work below ---------------------------->
 
-**Task Number**: FILL_THIS_IN
+**Task Number**: 2
+```{r}
+# Group
+Group_apt_buildings <- apt_buildings %>%
+   mutate(haveornot_visitor_parking = factor(case_when(visitor_parking=="UNAVAILABLE"~"NO Visitor Parking", TRUE ~ "Have visitor parking")))
 
+head(Group_apt_buildings)
+# Graph
+Group_apt_buildings %>% filter(year_built>=2000) %>% select("id","no_of_units","visitor_parking","haveornot_visitor_parking") %>% ggplot(aes(x = haveornot_visitor_parking, y=no_of_units)) + geom_boxplot() + theme_minimal() + ylim(0,1000)
+
+```
+Explanation: Since I narrow down on whether I want to know whether larger building in term of units more likely to have a visitor parking regardless of type (paid, free, both), I grouped all types of visitor parking into a group "have visitor parking", whereas those where visitor parking is unavailable is change into "NO visitor parking".
 <!----------------------------------------------------------------------------->
 
 # Task 3: Modelling
@@ -218,7 +237,10 @@ Fit a model or run a hypothesis test that provides insight on this variable with
     -   You could use `lm()` to test for significance of regression.
 
 <!-------------------------- Start your work below ---------------------------->
+```{r}
 
+
+```
 <!----------------------------------------------------------------------------->
 
 ## 2.2 (5 points)
@@ -230,6 +252,10 @@ Produce something relevant from your fitted model: either predictions on Y, or a
 -   Obtain your results using the `broom` package if possible. If your model is not compatible with the broom function you're needing, then you can obtain your results by some other means, but first indicate which broom function is not compatible.
 
 <!-------------------------- Start your work below ---------------------------->
+```{r}
+
+
+```
 
 <!----------------------------------------------------------------------------->
 
@@ -245,6 +271,10 @@ Take a summary table that you made from Milestone 1 (Task 4.2), and write it as 
 -   **Reproducibility criteria**: You should be able to delete the csv file, and remake it simply by knitting this Rmd file.
 
 <!-------------------------- Start your work below ---------------------------->
+```{r}
+
+
+```
 
 <!----------------------------------------------------------------------------->
 
@@ -255,6 +285,10 @@ Write your model object from Task 3 to an R binary file (an RDS), and load it ag
 -   The same robustness and reproducibility criteria as in 3.1 apply here.
 
 <!-------------------------- Start your work below ---------------------------->
+```{r}
+
+
+```
 
 <!----------------------------------------------------------------------------->
 
