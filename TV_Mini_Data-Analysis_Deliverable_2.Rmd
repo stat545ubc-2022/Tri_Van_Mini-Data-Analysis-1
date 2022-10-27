@@ -220,9 +220,9 @@ Pick a research question, and pick a variable of interest (we'll call it "Y") th
 
 <!-------------------------- Start your work below ---------------------------->
 
-**Research Question**: FILL_THIS_IN
+**Research Question**: How does factors such as the number of units (no_of_units),and the type of visitor (visitor_parking) predict the numbers of accessible parking spaces (no_of_accessible_parking_spaces) of a building?
 
-**Variable of interest**: FILL_THIS_IN
+**Variable of interest**: y = no_of_accessible_parking_spaces
 
 <!----------------------------------------------------------------------------->
 
@@ -238,8 +238,9 @@ Fit a model or run a hypothesis test that provides insight on this variable with
 
 <!-------------------------- Start your work below ---------------------------->
 ```{r}
-
-
+#Fit a model to predict the number of accessible parking based on number of units and type of visitor parking
+accessible_parking_lm <- lm(no_of_accessible_parking_spaces ~ no_of_units+visitor_parking, data = apt_buildings)
+accessible_parking_lm
 ```
 <!----------------------------------------------------------------------------->
 
@@ -253,8 +254,12 @@ Produce something relevant from your fitted model: either predictions on Y, or a
 
 <!-------------------------- Start your work below ---------------------------->
 ```{r}
-
-
+library(broom)
+#extract statistical summaries about each “component” of the model,like a regression coefficient or a p-value. The coefficient and p-values for each variables can be seen in the "estimate" and "p-value" columns of the tibble, respectively. 
+tidy(accessible_parking_lm)
+#predictions on Y
+augment(accessible_parking_lm, newdata = tibble(no_of_units = 100, visitor_parking ="PAID")) 
+# based on the result, it could be predicted that 100 units building with paid visitor parking will have around 4 accessible parking spaces.
 ```
 
 <!----------------------------------------------------------------------------->
