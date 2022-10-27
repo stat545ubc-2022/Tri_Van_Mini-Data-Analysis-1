@@ -1,11 +1,12 @@
 # Tri_Van_Mini-Data-Analysis-1and2
 ## Main README (3 points)
+Last edit: 10-27-22
 
-There should be a file named `README.md` at the top level of your repository. Its contents should automatically appear when you visit the repository on GitHub.
+- This is Minh-Tri Van 's submission for Milestones 1 & 2 of STAT454A
+The contents of the directory is as follow:
+-   Milestone_1: Folders content files related to Milestone 1
+-   Milestone_2: Folders content files related to Milestone 2
+-   Output: Folders content files related to Milestone 2 - Task 4
+-   Tri_Van_Mini-Data-Analysis-1_and_2.Rproj: The R project environment  - Run this in order to edit this reprository
 
-Minimum contents of the README file:
 
--   In a sentence or two, explains what this repository is, so that future-you or someone else stumbling on your repository can be oriented to the repository.
--   In a sentence or two (or more??), briefly explains how to engage with the repository. You can assume the person reading knows the material from STAT 545A. Basically, if a visitor to your repository wants to explore your project, what should they know?
-
-Once you get in the habit of making README files, and seeing more README files in other projects, you'll wonder how you ever got by without them! They are tremendously helpful.
