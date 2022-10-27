@@ -93,7 +93,6 @@ head(apt_buildings)
 ```{r}
 ### Untidy ###
 # Expand the type of parking and make them into separate columns
-#apt_buildings %>% unite(col=parking_per_unit,no_of_accessible_parking_spaces, no_of_units, sep="/")
 untidy<- apt_buildings %>% pivot_wider(names_from = visitor_parking, values_from = no_of_units)
 head(untidy)
 ```
@@ -101,14 +100,11 @@ head(untidy)
 **Re-tidy**
 ```{r}
 ### Tidy again ###
-#tidy<- untidy %>% select(id,PAID,FREE,UNAVAILABLE,BOTH) %>% pivot_longer(cols =c(-id),names_to = "visitor_parking", values_to = "no_of_accessible_parking_spaces")
-tidy<- untidy %>% pivot_longer(cols =c("PAID","FREE","UNAVAILABLE","BOTH","NA"),names_to = "visitor_parking", values_to ="no_of_units") # Why anything other than paid does not translate into value?
+tidy<- untidy %>% pivot_longer(cols =c("PAID","FREE","UNAVAILABLE","BOTH","NA"),names_to = "visitor_parking", values_to ="no_of_units") 
 head(tidy)
-
-
 ```
 
-**Explanation** because apt_buildings is tidy, I un-tidy it and then re-tidy it following the instructions
+**Explanation** because apt_buildings data set already is tidy, I un-tidy it and then re-tidy it following the instructions.
 
 <!----------------------------------------------------------------------------->
 
@@ -118,32 +114,30 @@ Now, you should be more familiar with your data, and also have made progress in 
 
 <!-------------------------- Start your work below ---------------------------->
 
-1.  Research question 1: Are newer buildings more likely to have barrier-free accessibility entry?
-->New question 1: Is building built after year 2000 have more barrier-free accessibility entry then building built before 2000 for the same number of units?
-2.  Research question 2: Is there a relationship between the type of visitor parking available and the size of building in term of number of units?
-->New question 2: Is there a relationship between the type of visitor parking available and the size of building in term of number of units in building built after year 2000?
-
+1.  *Research question 1*: Are newer buildings more likely to have barrier-free accessibility entry?
+->**New question 1:** Are buildings built after year 2000 have more barrier-free accessibility entry then buildings built before 2000 for the same number of units?
+2.  *Research question 2*: Are there any relationship between the types of visitor parking available and the size of building in term of number of units?
+->**New question 2:** Are there any relationships between the type of visitor parking available and the size of building in term of number of units in buildings built after year 2000?
 
 <!----------------------------------------------------------------------------->
 
 Explain your decision for choosing the above two research questions.
 
 <!--------------------------- Start your work below --------------------------->
-1.  *FILL_THIS_IN* I want to know whether building built after year 2000 have more barrier-free accessibility entry then building built before 2000 for the same number of units. The degree of complexity is enough for me to apply the functions to refine the data.
-2.  *FILL_THIS_IN* I want to know whether there a relationship between the type of visitor parking available and the size of building in term of number of units in building built after year 2000. The degree of complexity is enough for me to apply the functions to refine the data.
+1.  **New question 1:** I want to know whether buildings built after year 2000 have more barrier-free accessibility entry then building built before 2000 for the same number of units. The degree of complexity is enough for me to apply the functions to refine the data.
+2.  **New question 2:** I want to know whether there a relationship between the type of visitor parking available and the size of building in term of number of units in building built after year 2000. The degree of complexity is enough for me to apply the functions to refine the data.
 
 <!----------------------------------------------------------------------------->
 
 Now, try to choose a version of your data that you think will be appropriate to answer these 2 questions. Use between 4 and 8 functions that we've covered so far (i.e. by filtering, cleaning, tidy'ing, dropping irrelevant columns, etc.).
 
 <!--------------------------- Start your work below --------------------------->
-#Filter, select, group_by, arrange
-*Question 1
+**Question 1:** Functions use select, arrange, mutate, group by, summarize
 ```{r}
 apt_buildings %>% select("id","no_of_units","no_barrier_free_accessible_units","year_built") %>% arrange(no_of_units)%>%  mutate(free_access_unit_per_total_unit=no_barrier_free_accessible_units/no_of_units) %>% group_by(year_built) %>% summarize(mean_number_of_freeaccess_unit=mean(free_access_unit_per_total_unit))
 
 ```                                     
-*Question 2
+**Question 2:** FUnctions use filter, select, rrange, group by, summarize
 ```{r}
 apt_buildings %>% filter(year_built>=2000) %>% select("id","no_of_units","visitor_parking") %>% arrange(no_of_units)%>% group_by(visitor_parking)%>% summarise(mean_number_of_unit=mean(no_of_units))
 
@@ -193,7 +187,7 @@ head(reorder_apt_buildings)
 # Graph
 reorder_apt_buildings %>% filter(year_built>=2000) %>% select("id","no_of_units","visitor_parking") %>% ggplot(aes(x = visitor_parking, y=no_of_units)) + geom_boxplot() + theme_minimal() + ylim(0,1000) 
 ```
-Explanation: I want to order the type of visitor parking in the increasing order of their average number of units. Because I suspect the larger building (with more units) are more likely to have visitor parking of all types (Both, free, paid), whereas smaller units may have no visitor parking available.
+-   Explanation: I want to order the type of visitor parking in the increasing order of their average number of units. Because I suspect the larger building (with more units) are more likely to have visitor parking of all types (Both, free, paid), whereas smaller units may have no visitor parking available.
 <!----------------------------------------------------------------------------->
 
 <!-------------------------- Start your work below ---------------------------->
@@ -209,7 +203,7 @@ head(Group_apt_buildings)
 Group_apt_buildings %>% filter(year_built>=2000) %>% select("id","no_of_units","visitor_parking","haveornot_visitor_parking") %>% ggplot(aes(x = haveornot_visitor_parking, y=no_of_units)) + geom_boxplot() + theme_minimal() + ylim(0,1000)
 
 ```
-Explanation: Since I narrow down on whether I want to know whether larger building in term of units more likely to have a visitor parking regardless of type (paid, free, both), I grouped all types of visitor parking into a group "have visitor parking", whereas those where visitor parking is unavailable is change into "NO visitor parking".
+-   Explanation: Since I narrow down on whether I want to know whether larger building in term of units more likely to have a visitor parking regardless of type (paid, free, both), I grouped all types of visitor parking into a group "have visitor parking", whereas those where visitor parking is unavailable is change into "NO visitor parking".
 <!----------------------------------------------------------------------------->
 
 # Task 3: Modelling
